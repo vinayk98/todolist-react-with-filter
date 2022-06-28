@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import { CurrentTab } from "./components/CurrentTab";
 import { DeleteAll } from "./components/DeleteAll";
 import { InputField } from "./components/InputField";
@@ -8,33 +8,38 @@ import { TodosDiv } from "./components/TodosDiv";
 
 import "./index.css";
 
+export const TodoContext = createContext();
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [tabName, setTabName] = useState("All");
   const [filterText, setFilterText] = useState("");
 
   return (
-    <div className="container">
-      <h5 className="heading">#todo-react</h5>
-      <CurrentTab tabName={tabName} />
-      <Navdiv setTabName={setTabName} />
-      {tabName !== "Completed" && tabName !== "Filter" ? (
-        <InputField todos={todos} setTodos={setTodos} />
-      ) : (
-        <React.Fragment></React.Fragment>
-      )}
-      {tabName === "Filter" && <SearchTodo setFilterText={setFilterText} />}
-      <TodosDiv
-        todos={todos}
-        setTodos={setTodos}
-        tabName={tabName}
-        filterText={filterText}
-      />
+    <TodoContext.Provider
+      value={{
+        tabName,
+        setTabName,
+        todos,
+        setTodos,
+        filterText,
+        setFilterText,
+      }}
+    >
+      <div className="container">
+        <h5 className="heading">#todo-react</h5>
+        <CurrentTab />
+        <Navdiv />
+        {tabName !== "Completed" && tabName !== "Filter" ? (
+          <InputField />
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
+        {tabName === "Filter" && <SearchTodo />}
+        <TodosDiv />
 
-      {tabName === "Completed" && (
-        <DeleteAll todos={todos} setTodos={setTodos} />
-      )}
-    </div>
+        {tabName === "Completed" && <DeleteAll />}
+      </div>
+    </TodoContext.Provider>
   );
 };
 export default App;

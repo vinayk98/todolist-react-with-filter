@@ -1,7 +1,8 @@
-import React from "react";
-export const TodosDivItems = ({ item, setTodos, todos, tabName }) => {
+import React, { useContext } from "react";
+import { TodoContext } from "../App";
+export const TodosDivItems = ({ item }) => {
+  const { setTodos, todos, tabName } = useContext(TodoContext);
   return (
-    // <React.Fragment>
     <div className="todoDiv">
       <input
         className="inp"
@@ -46,7 +47,5 @@ export const TodosDivItems = ({ item, setTodos, todos, tabName }) => {
         </button>
       )}
     </div>
-
-    // </React.Fragment>
   );
 };

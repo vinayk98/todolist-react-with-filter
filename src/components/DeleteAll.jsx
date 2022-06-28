@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../App";
 
-export const DeleteAll = ({ todos, setTodos }) => {
+export const DeleteAll = () => {
+  const { todos, setTodos } = useContext(TodoContext);
   return (
     <div>
       <button

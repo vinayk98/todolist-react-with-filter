@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../App";
 import { TodosDivItems } from "./TodosDivItems";
 
-export const TodosDiv = ({ todos, setTodos, tabName, filterText }) => {
+export const TodosDiv = () => {
+  const { todos, tabName, filterText } = useContext(TodoContext);
   let newData;
   if (tabName === "All") {
     newData = todos;
@@ -17,20 +19,11 @@ export const TodosDiv = ({ todos, setTodos, tabName, filterText }) => {
     newData = todos.filter((item) => {
       return item.name.includes(filterText);
     });
-    //filter functionality later
   }
   return (
     <div>
       {newData.map((item, index) => {
-        return (
-          <TodosDivItems
-            key={index}
-            setTodos={setTodos}
-            todos={todos}
-            item={item}
-            tabName={tabName}
-          />
-        );
+        return <TodosDivItems key={index} item={item} />;
       })}
     </div>
   );

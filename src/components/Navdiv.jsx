@@ -1,13 +1,12 @@
 import React from "react";
 import Tab from "./Tab";
-
-export const Navdiv = ({ setTabName }) => {
+export const Navdiv = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
-      <Tab name={"All"} setTabName={setTabName} />
-      <Tab name={"Active"} setTabName={setTabName} />
-      <Tab name={"Completed"} setTabName={setTabName} />
-      <Tab name={"Filter"} setTabName={setTabName} />
+      <Tab name={"All"} />
+      <Tab name={"Active"} />
+      <Tab name={"Completed"} />
+      <Tab name={"Filter"} />
     </nav>
   );
 };

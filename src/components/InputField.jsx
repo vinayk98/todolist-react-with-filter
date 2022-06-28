@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-export const InputField = ({ todos, setTodos }) => {
+import { TodoContext } from "../App";
+
+export const InputField = () => {
   const [inp, setInp] = React.useState("");
+  const { todos, setTodos } = useContext(TodoContext);
 
   return (
     <div>
