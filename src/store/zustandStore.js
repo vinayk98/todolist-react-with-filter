@@ -1,37 +1,37 @@
 import create from "zustand";
 import { SET_TABNAME, SET_TODOS, SET_FILTERTEXT, ADD_TODOS } from "./CONSTANTS";
 
-const reducer = (state, action) => {
+const reducer = (prevState, action) => {
   switch (action.type) {
     case SET_TABNAME:
       return {
-        ...state,
+        ...prevState,
         tabName: action.payload,
       };
     case SET_FILTERTEXT:
       return {
-        ...state,
+        ...prevState,
         filterText: action.payload,
       };
     case ADD_TODOS:
-      const newTodos = [...state.todos];
+      const newTodos = [...prevState.todos];
       newTodos.push(action.payload);
       return {
-        ...state,
+        ...prevState,
         todos: newTodos,
       };
     case SET_TODOS: {
       return {
-        ...state,
+        ...prevState,
         todos: action.payload,
       };
     }
     case `LOG_EVERYTHING`: {
-      console.log(state);
-      return state;
+      console.log(prevState);
+      return prevState;
     }
     default:
-      return state;
+      return prevState;
   }
 };
 
