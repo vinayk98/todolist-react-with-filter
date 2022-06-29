@@ -28,6 +28,8 @@ export const reducer = (prevState, action) => {
         ...prevState,
         todos: new_todo,
       };
+    default:
+      return prevState;
   }
 };
 
