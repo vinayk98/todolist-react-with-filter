@@ -5,7 +5,6 @@ import { SET_TABNAME, SET_TODOS, SET_FILTER_TEXT, ADD_TODO } from "./CONSTANTS";
 export const reducer = (prevState, action) => {
   switch (action.type) {
     case SET_TABNAME:
-      console.log(action);
       return {
         ...prevState,
         tabName: action.payload,
