@@ -1,6 +1,6 @@
 import create from "zustand";
 
-import { SET_TABNAME, SET_TODOS, SET_FILTER_TEXT, ADD_TODO } from "./CONSTANTS";
+import { SET_FILTER_TEXT, SET_TODOS, ADD_TODO, SET_TABNAME } from "./CONSTANTS";
 
 export const reducer = (prevState, action) => {
   switch (action.type) {
