@@ -6,6 +6,7 @@ import { Navdiv } from "./components/Navdiv";
 import { SearchTodo } from "./components/SearchTodo";
 import { TodosDiv } from "./components/TodosDiv";
 import { useStore } from "./store/zustandStore";
+
 import "./index.css";
 
 const App = () => {
