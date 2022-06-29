@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
-import { TodoContext } from "../App";
+import React from "react";
+import { useStore } from "../store/zustandStore";
+import { SET_TODOS } from "../store/CONSTANTS";
 
 export const DeleteAll = () => {
-  const { todos, setTodos } = useContext(TodoContext);
+  const todos = useStore((state) => state.todos);
+  const dispatch = useStore((state) => state.dispatch);
   return (
     <div>
       <button
@@ -13,7 +15,10 @@ export const DeleteAll = () => {
             }
             return true;
           });
-          setTodos(newItems);
+          dispatch({
+            type: SET_TODOS,
+            payload: newItems,
+          });
         }}
       >
         Delete all

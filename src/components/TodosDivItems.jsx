@@ -1,7 +1,12 @@
-import React, { useContext } from "react";
-import { TodoContext } from "../App";
+import React from "react";
+import { SET_TODOS } from "../store/CONSTANTS";
+import { useStore } from "../store/zustandStore";
 export const TodosDivItems = ({ item }) => {
-  const { setTodos, todos, tabName } = useContext(TodoContext);
+  const { todos, tabName } = useStore((state) => ({
+    todos: state.todos,
+    tabName: state.tabName,
+  }));
+  const dispatch = useStore((state) => state.dispatch);
   return (
     <div className="todoDiv">
       <input
@@ -17,7 +22,10 @@ export const TodosDivItems = ({ item }) => {
             }
             return localItem;
           });
-          setTodos(newItems);
+          dispatch({
+            type: SET_TODOS,
+            payload: newItems,
+          });
         }}
       />
 
@@ -40,7 +48,10 @@ export const TodosDivItems = ({ item }) => {
               }
               return true;
             });
-            setTodos(newItems);
+            dispatch({
+              type: SET_TODOS,
+              payload: newItems,
+            });
           }}
         >
           Delete
