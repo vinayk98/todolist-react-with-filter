@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { TodoContext } from "../App";
+import React from "react";
+import { useStore } from "../store/zustandStore";
 export const CurrentTab = () => {
-  const { tabName } = useContext(TodoContext);
+  const tabName = useStore((state) => state.tabName);
   return (
     <div>
       <h6>CurrentTab :{tabName}</h6>

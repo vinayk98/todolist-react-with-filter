@@ -1,12 +1,19 @@
-import React, { useContext } from "react";
-import { TodoContext } from "../App";
+import React from "react";
+import { SET_TABNAME } from "../store/CONSTANTS";
+import { useStore } from "../store/zustandStore";
+
 export const Tab = ({ name }) => {
-  const { setTabName } = useContext(TodoContext);
+  const dispatch = useStore((state) => state.dispatch);
   return (
     <div className="tabDiv">
       <button
         onClick={() => {
-          setTabName(name);
+          // setTabName(name);
+
+          dispatch({
+            type: SET_TABNAME,
+            payload: name,
+          });
         }}
         className="btns"
       >

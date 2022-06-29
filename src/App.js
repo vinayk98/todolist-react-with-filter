@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React from "react";
 import { CurrentTab } from "./components/CurrentTab";
 import { DeleteAll } from "./components/DeleteAll";
 import { InputField } from "./components/InputField";
@@ -8,38 +8,25 @@ import { TodosDiv } from "./components/TodosDiv";
 
 import "./index.css";
 
-export const TodoContext = createContext();
+import { useStore } from "./store/zustandStore";
 const App = () => {
-  const [todos, setTodos] = useState([]);
-  const [tabName, setTabName] = useState("All");
-  const [filterText, setFilterText] = useState("");
+  const tabName = useStore((state) => state.tabName);
 
   return (
-    <TodoContext.Provider
-      value={{
-        tabName,
-        setTabName,
-        todos,
-        setTodos,
-        filterText,
-        setFilterText,
-      }}
-    >
-      <div className="container">
-        <h5 className="heading">#todo-react</h5>
-        <CurrentTab />
-        <Navdiv />
-        {tabName !== "Completed" && tabName !== "Filter" ? (
-          <InputField />
-        ) : (
-          <React.Fragment></React.Fragment>
-        )}
-        {tabName === "Filter" && <SearchTodo />}
-        <TodosDiv />
+    <div className="container">
+      <h5 className="heading">#todo-react</h5>
+      <CurrentTab />
+      <Navdiv />
+      {tabName !== "Completed" && tabName !== "Filter" ? (
+        <InputField />
+      ) : (
+        <React.Fragment></React.Fragment>
+      )}
+      {tabName === "Filter" && <SearchTodo />}
+      <TodosDiv />
 
-        {tabName === "Completed" && <DeleteAll />}
-      </div>
-    </TodoContext.Provider>
+      {tabName === "Completed" && <DeleteAll />}
+    </div>
   );
 };
 export default App;

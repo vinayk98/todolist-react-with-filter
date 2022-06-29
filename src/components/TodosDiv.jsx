@@ -1,9 +1,14 @@
-import React, { useContext } from "react";
-import { TodoContext } from "../App";
+import React from "react";
+import { useStore } from "../store/zustandStore";
+
 import { TodosDivItems } from "./TodosDivItems";
 
 export const TodosDiv = () => {
-  const { todos, tabName, filterText } = useContext(TodoContext);
+  const { todos, tabName, filterText } = useStore((state) => ({
+    todos: state.todos,
+    tabName: state.tabName,
+    filterText: state.filterText,
+  }));
   let newData;
   if (tabName === "All") {
     newData = todos;

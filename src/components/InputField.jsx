@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import { TodoContext } from "../App";
+import { ADD_TODO } from "../store/CONSTANTS";
+import { useStore } from "../store/zustandStore";
 
 export const InputField = () => {
   const [inp, setInp] = React.useState("");
-  const { todos, setTodos } = useContext(TodoContext);
+  const dispatch = useStore((state) => state.dispatch);
 
   return (
     <div>
@@ -33,7 +34,12 @@ export const InputField = () => {
                 checked: false,
                 id: uuidv4(),
               };
-              setTodos([...todos, tempData]);
+              // setTodos([...todos, tempData]);
+
+              dispatch({
+                type: ADD_TODO,
+                payload: tempData,
+              });
             }
             setInp("");
           }}
