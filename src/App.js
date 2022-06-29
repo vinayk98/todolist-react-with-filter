@@ -8,7 +8,7 @@ import { TodosDiv } from "./components/TodosDiv";
 
 import "./index.css";
 
-import { useStore } from "./store/zustandStore";
+import { useStore } from "../store/zustandStore";
 const App = () => {
   const tabName = useStore((state) => state.tabName);
 
