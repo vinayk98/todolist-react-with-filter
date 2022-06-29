@@ -5,10 +5,9 @@ import { InputField } from "./components/InputField";
 import { Navdiv } from "./components/Navdiv";
 import { SearchTodo } from "./components/SearchTodo";
 import { TodosDiv } from "./components/TodosDiv";
-
+import { useStore } from "./store/zustandStore";
 import "./index.css";
 
-import { useStore } from "./store/zustandStore";
 const App = () => {
   const tabName = useStore((state) => state.tabName);
 
